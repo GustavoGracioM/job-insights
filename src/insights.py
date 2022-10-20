@@ -11,7 +11,7 @@ def get_unique_job_types(path: str):
 
 
 def filter_by_job_type(jobs: dict, job_type: str):
-    return [job for job in jobs if job_type == job['job_type']]
+    return [job for job in jobs if job_type == job["job_type"]]
 
 
 def get_unique_industries(path):
@@ -26,27 +26,15 @@ def get_unique_industries(path):
 
 
 def filter_by_industry(jobs, industry):
-    """Filters a list of jobs by industry
-
-    Parameters
-    ----------
-    jobs : list
-        List of jobs to be filtered
-    industry : str
-        Industry for the list filter
-
-    Returns
-    -------
-    list
-        List of jobs with provided industry
-    """
-    return []
+    return [
+        job for job in jobs if "industry" in job if industry == job["industry"]
+    ]
 
 
 def get_max_salary(path):
     resul = read(path)
     jobs = [
-        int(job['max_salary'])
+        int(job["max_salary"])
         for job in resul
         if "max_salary" in job
         if job["max_salary"].isdigit()
@@ -57,7 +45,7 @@ def get_max_salary(path):
 def get_min_salary(path):
     resul = read(path)
     jobs = [
-        int(job['min_salary'])
+        int(job["min_salary"])
         for job in resul
         if "min_salary" in job
         if job["min_salary"].isdigit()
